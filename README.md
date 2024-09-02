@@ -25,6 +25,11 @@ https://www.udemy.com/course/react-spring-creando-webapp-full-stack/
     - Login and logOut.
     - Auth Hook y servicios.
 
+# Sección 8 : Rutas en aplicación Usuarios
+
+    - Install routes
+        - npm install react-router-dom
+        
 
 ## Recursos
 https://sweetalert2.github.io/#usage

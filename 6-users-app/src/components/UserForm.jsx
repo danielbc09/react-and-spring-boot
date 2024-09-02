@@ -29,6 +29,14 @@ export const UserForm = ({
       });
       return;
     }
+    if (!email.includes('@')) {
+      Swal.fire({
+        title: 'Error de validación email',
+        text: 'El email debe ser valido, incluir una arroba!',
+        icon: 'error',
+      });
+      return;
+    }
     handlerAddUser(userForm);
     setUserForm(initialUserForm);
   };
@@ -72,13 +80,15 @@ export const UserForm = ({
       <button className="btn btn-primary" type="submit">
         {id > 0 ? 'Editar' : 'Crear'}
       </button>
-      <button
-        className="btn btn-primary mx-2"
-        type="button"
-        onClick={onCloseForm}
-      >
-        Cerrar
-      </button>
+      {!handleCloseForm || (
+        <button
+          className="btn btn-primary mx-2"
+          type="button"
+          onClick={onCloseForm}
+        >
+          Cerrar
+        </button>
+      )}
     </form>
   );
 };

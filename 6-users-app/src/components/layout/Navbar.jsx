@@ -1,4 +1,4 @@
-import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types
 export const Navbar = ({ login, handlerLogOut }) => {
@@ -19,12 +19,29 @@ export const Navbar = ({ login, handlerLogOut }) => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+        <div className="collapse navbar-collapse " id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="">
+              <NavLink className="nav-link" to="users">
+                Usuarios
+              </NavLink>
+            </li>
+            <li className="">
+              <NavLink className="nav-link" to="users/register">
+                Registrar Usuario
+              </NavLink>
+            </li>
+          </ul>
+        </div>
         <div
           className="collapse navbar-collapse justify-content-end"
-          id="navbarSupportedContent"
+          id="navbarLogout"
         >
           <span className="nav-item nav-link text-primary mx-3">
-            {login.user?.username}
+            {
+              // eslint-disable-next-line react/prop-types
+              login.user?.username
+            }
           </span>
           <button className="btn btn-outline-success" onClick={handlerLogOut}>
             Log out

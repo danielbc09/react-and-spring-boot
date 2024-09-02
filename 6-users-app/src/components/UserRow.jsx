@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 // eslint-disable-next-line react/prop-types
 export const UserRow = ({
   id,
@@ -23,8 +25,16 @@ export const UserRow = ({
             })
           }
         >
-          update
+          Update
         </button>
+      </td>
+      <td>
+        <NavLink
+          className={'btn btn-secondary btn-sm'}
+          to={'/users/edit/' + id}
+        >
+          Update route
+        </NavLink>
       </td>
       <td>
         <button
