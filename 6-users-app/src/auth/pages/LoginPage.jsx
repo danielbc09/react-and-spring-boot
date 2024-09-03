@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../context/AuthContext';
 
 const initialLoginForm = {
   userName: '',
   password: '',
 };
-// eslint-disable-next-line react/prop-types
-export const LoginPage = ({ handlerLogin }) => {
+export const LoginPage = () => {
+  const { handlerLogin } = useContext(AuthContext);
   const [loginForm, setLoginForm] = useState(initialLoginForm);
   const { username, password } = loginForm;
 

@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserForm } from '../components/UserForm';
 import { useParams } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 // eslint-disable-next-line react/prop-types
-export const RegisterPage = ({
-  users = [],
-  handlerAddUser,
-  initialUserForm,
-}) => {
+export const RegisterPage = () => {
   const { id } = useParams();
+  const { users = [], initialUserForm } = useContext(UserContext);
   const [userSelected, setUserSelected] = useState(initialUserForm);
 
   useEffect(() => {
@@ -24,11 +22,7 @@ export const RegisterPage = ({
       <h4>{userSelected.id > 0 ? 'Editar' : 'Registrar'} ususarios</h4>
       <div className="row">
         <div className="col">
-          <UserForm
-            userSelected={userSelected}
-            handlerAddUser={handlerAddUser}
-            initialUserForm={initialUserForm}
-          />
+          <UserForm userSelected={userSelected} />
         </div>
       </div>
     </div>

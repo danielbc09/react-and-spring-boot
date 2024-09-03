@@ -1,7 +1,9 @@
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../auth/context/AuthContext';
 
-// eslint-disable-next-line react/prop-types
-export const Navbar = ({ login, handlerLogOut }) => {
+export const Navbar = () => {
+  const { login, handlerLogOut } = useContext(AuthContext);
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">

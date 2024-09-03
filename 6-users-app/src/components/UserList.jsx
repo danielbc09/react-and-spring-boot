@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 import { UserRow } from './UserRow';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
 // eslint-disable-next-line react/prop-types
-export const UserList = ({
-  users = [],
-  handleRemoveUser,
-  handleUserSelectedForm,
-}) => {
+export const UserList = () => {
+  const { users = [] } = useContext(UserContext);
   return (
     <>
       <table className="table table-hover table-striped">
@@ -22,14 +21,7 @@ export const UserList = ({
         </thead>
         <tbody>
           {users.map(({ id, userName, email }) => (
-            <UserRow
-              key={id}
-              id={id}
-              userName={userName}
-              email={email}
-              handleRemoveUser={handleRemoveUser}
-              handleUserSelectedForm={handleUserSelectedForm}
-            />
+            <UserRow key={id} id={id} userName={userName} email={email} />
           ))}
         </tbody>
       </table>

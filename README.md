@@ -29,7 +29,13 @@ https://www.udemy.com/course/react-spring-creando-webapp-full-stack/
 
     - Install routes
         - npm install react-router-dom
-        
+    - Refactorizar app para usar rutas    
+
+ 
+# Sección 9 : Context
+    - React Context
+    - Refactorizar app para que use el contexto User y Auth.
+
 
 ## Recursos
 https://sweetalert2.github.io/#usage
