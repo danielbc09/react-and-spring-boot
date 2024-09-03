@@ -36,6 +36,11 @@ https://www.udemy.com/course/react-spring-creando-webapp-full-stack/
     - React Context
     - Refactorizar app para que use el contexto User y Auth.
 
+# Sección 11: Backend Spring Boot App Usuarios
+
+    - Crear proyecto en spring boot
+    - Hacer el crud en usuarios en el backend.
+    - Conectar proyecto a BD Mysql.
 
 ## Recursos
 https://sweetalert2.github.io/#usage
