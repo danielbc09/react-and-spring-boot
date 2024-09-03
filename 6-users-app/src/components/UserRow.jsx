@@ -3,12 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 // eslint-disable-next-line react/prop-types
-export const UserRow = ({ id, userName, email }) => {
+export const UserRow = ({ id, username, email }) => {
   const { handleRemoveUser, handleUserSelectedForm } = useContext(UserContext);
   return (
     <tr key={id}>
       <td>{id}</td>
-      <td>{userName}</td>
+      <td>{username}</td>
       <td>{email}</td>
       <td>
         <button
@@ -17,7 +17,7 @@ export const UserRow = ({ id, userName, email }) => {
           onClick={() =>
             handleUserSelectedForm({
               id,
-              userName,
+              username,
               email,
             })
           }

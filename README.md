@@ -38,10 +38,19 @@ https://www.udemy.com/course/react-spring-creando-webapp-full-stack/
 
 # Sección 11: Backend Spring Boot App Usuarios
 
-    - Crear proyecto en spring boot
+    - Crear proyecto en spring boot (usersapp)
     - Hacer el crud en usuarios en el backend.
     - Conectar proyecto a BD Mysql.
 
+# Sección 13:Comunicaicón Frontend React y Backend Spring App Usuarios.
+    
+    - Usar Axios.
+    - npm install axios
+    - Conectar CRUD users con Sprign Backend
+
+
 ## Recursos
+
 https://sweetalert2.github.io/#usage
 https://github.com/sweetalert2/sweetalert2-react-content?tab=readme-ov-file
+https://axios-http.com/es/docs/intro

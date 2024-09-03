@@ -6,7 +6,7 @@ import { UserContext } from '../context/UserContext';
 export const UserForm = ({ userSelected, handleCloseForm }) => {
   const { initialUserForm, handlerAddUser } = useContext(UserContext);
   const [userForm, setUserForm] = useState(initialUserForm);
-  const { id, userName, password, email } = userForm;
+  const { id, username, password, email } = userForm;
 
   const onInputChange = ({ target }) => {
     const { name, value } = target;
@@ -18,7 +18,7 @@ export const UserForm = ({ userSelected, handleCloseForm }) => {
 
   const onsubmit = (event) => {
     event.preventDefault();
-    if (!userName || (!password && id === 0) || !email) {
+    if (!username || (!password && id === 0) || !email) {
       Swal.fire({
         title: 'Error de validación ',
         text: 'Debe completar los campos del formulario!',
@@ -52,8 +52,8 @@ export const UserForm = ({ userSelected, handleCloseForm }) => {
       <input
         className="form-control my-3 w-75"
         placeholder="User name"
-        name="userName"
-        value={userName}
+        name="username"
+        value={username}
         onChange={onInputChange}
       />
       {id > 0 || (

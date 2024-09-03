@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../context/AuthContext';
 
 const initialLoginForm = {
-  userName: '',
+  username: '',
   password: '',
 };
 export const LoginPage = () => {

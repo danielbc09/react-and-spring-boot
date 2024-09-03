@@ -13,6 +13,7 @@ export const UserProvider = ({ children }) => {
     handleUserSelectedForm,
     handleOpenForm,
     handleCloseForm,
+    getUsers,
   } = useUsers();
 
   return (
@@ -27,6 +28,7 @@ export const UserProvider = ({ children }) => {
         handleUserSelectedForm,
         handleOpenForm,
         handleCloseForm,
+        getUsers,
       }}
     >
       {children}

@@ -20,8 +20,8 @@ export const UserList = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map(({ id, userName, email }) => (
-            <UserRow key={id} id={id} userName={userName} email={email} />
+          {users.map(({ id, username, email }) => (
+            <UserRow key={id} id={id} username={username} email={email} />
           ))}
         </tbody>
       </table>
