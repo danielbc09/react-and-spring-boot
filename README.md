@@ -48,6 +48,9 @@ https://www.udemy.com/course/react-spring-creando-webapp-full-stack/
     - npm install axios
     - Conectar CRUD users con Sprign Backend
 
+# Seccion 14 : Validaciones Spring boot
+    - Usar anotaciones de validacion Spring 
+    - Poner las validaciones en los campos necesarios.
 
 ## Recursos
 
