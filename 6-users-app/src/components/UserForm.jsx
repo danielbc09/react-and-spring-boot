@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
-import Swal from 'sweetalert2';
 import { UserContext } from '../context/UserContext';
 
 // eslint-disable-next-line react/prop-types
 export const UserForm = ({ userSelected, handleCloseForm }) => {
-  const { initialUserForm, handlerAddUser } = useContext(UserContext);
+  const { initialUserForm, handlerAddUser, errors } = useContext(UserContext);
   const [userForm, setUserForm] = useState(initialUserForm);
   const { id, username, password, email } = userForm;
 
@@ -18,6 +17,7 @@ export const UserForm = ({ userSelected, handleCloseForm }) => {
 
   const onsubmit = (event) => {
     event.preventDefault();
+    /*
     if (!username || (!password && id === 0) || !email) {
       Swal.fire({
         title: 'Error de validación ',
@@ -33,9 +33,8 @@ export const UserForm = ({ userSelected, handleCloseForm }) => {
         icon: 'error',
       });
       return;
-    }
+    }*/
     handlerAddUser(userForm);
-    setUserForm(initialUserForm);
   };
 
   useEffect(() => {
@@ -56,16 +55,21 @@ export const UserForm = ({ userSelected, handleCloseForm }) => {
         value={username}
         onChange={onInputChange}
       />
+      <p className="text-danger">{errors?.username}</p>
       {id > 0 || (
-        <input
-          className="form-control my-3 w-75"
-          placeholder="Password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={onInputChange}
-        />
+        <>
+          <input
+            className="form-control my-3 w-75"
+            placeholder="Password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={onInputChange}
+          />
+          <p className="text-danger">{errors?.password}</p>
+        </>
       )}
+
       <input
         className="form-control my-3 w-75"
         placeholder="email"
@@ -73,6 +77,8 @@ export const UserForm = ({ userSelected, handleCloseForm }) => {
         value={email}
         onChange={onInputChange}
       />
+      <p className="text-danger">{errors?.email}</p>
+
       <input type="hidden" name="id" value={id} />
       <button className="btn btn-primary" type="submit">
         {id > 0 ? 'Editar' : 'Crear'}

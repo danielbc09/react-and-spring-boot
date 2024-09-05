@@ -1,9 +1,9 @@
 package com.backend.usersapp.controllers;
 
+import com.backend.usersapp.models.request.UserRequest;
 import com.backend.usersapp.models.entities.User;
 import com.backend.usersapp.services.UserService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +47,7 @@ public class UserController {
 
   @PutMapping("/{id}")
   public ResponseEntity<?> update(
-      @Valid @RequestBody User user, BindingResult result, @PathVariable Long id) {
+      @Valid @RequestBody UserRequest user, BindingResult result, @PathVariable Long id) {
     if (result.hasErrors()) {
       return validation(result);
     }
@@ -72,8 +72,9 @@ public class UserController {
     result
         .getFieldErrors()
         .forEach(
-            err -> errors.put(
-                err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage()));
+            err ->
+                errors.put(
+                    err.getField(), "El campo " + err.getField() + " " + err.getDefaultMessage()));
     return ResponseEntity.badRequest().body(errors);
   }
 }

@@ -13,6 +13,7 @@ export const findAll = async () => {
 };
 
 export const save = async ({ username, email, password }) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const response = await axios.post(BASE_URL, {
       username,
@@ -21,12 +22,12 @@ export const save = async ({ username, email, password }) => {
     });
     return response;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
-  return null;
 };
 
 export const update = async ({ id, username, email }) => {
+  // eslint-disable-next-line no-useless-catch
   try {
     const response = await axios.put(`${BASE_URL}/${id}`, {
       username,
@@ -34,9 +35,8 @@ export const update = async ({ id, username, email }) => {
     });
     return response;
   } catch (error) {
-    console.error(error);
+    throw error;
   }
-  return null;
 };
 
 export const remove = async (id) => {

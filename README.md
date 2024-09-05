@@ -52,6 +52,9 @@ https://www.udemy.com/course/react-spring-creando-webapp-full-stack/
     - Usar anotaciones de validacion Spring 
     - Poner las validaciones en los campos necesarios.
 
+# Seccion 15 : Integrar validaciones en React.
+
+
 ## Recursos
 
 https://sweetalert2.github.io/#usage
