@@ -53,7 +53,16 @@ https://www.udemy.com/course/react-spring-creando-webapp-full-stack/
     - Poner las validaciones en los campos necesarios.
 
 # Seccion 15 : Integrar validaciones en React.
+    - Integración validaciones en el backend al frontend (Algo chambon en el frontend).
+    - 
 
+# Seccion 16 : Backend Spring Security.
+
+    - Configurar Backend para seguridad.
+    - Usar Spring Security. 
+    - Implement filters in Backend 
+    - Implement JWT Token with 
+        - https://github.com/jwtk/jjwt
 
 ## Recursos
 

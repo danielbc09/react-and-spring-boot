@@ -1,5 +1,6 @@
 package com.backend.usersapp.controllers;
 
+import com.backend.usersapp.models.dto.UserDto;
 import com.backend.usersapp.models.request.UserRequest;
 import com.backend.usersapp.models.entities.User;
 import com.backend.usersapp.services.UserService;
@@ -20,16 +21,19 @@ import java.util.Optional;
 @CrossOrigin(originPatterns = "*")
 public class UserController {
 
-  @Autowired private UserService service;
-
+  UserService userService;
+  @Autowired
+  public UserController(UserService userService) {
+    this.userService = userService;
+  }
   @GetMapping
-  public List<User> list() {
-    return service.findAll();
+  public List<UserDto> list() {
+    return userService.findAll();
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<?> show(@PathVariable long id) {
-    Optional<User> userOptional = service.findById(id);
+  public ResponseEntity<Object> show(@PathVariable long id) {
+    Optional<UserDto> userOptional = userService.findById(id);
     if (userOptional.isPresent()) {
       return ResponseEntity.ok(userOptional.orElseThrow());
     }
@@ -38,20 +42,20 @@ public class UserController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public ResponseEntity<?> create(@Valid @RequestBody User user, BindingResult result) {
+  public ResponseEntity<Object> create(@Valid @RequestBody User user, BindingResult result) {
     if (result.hasErrors()) {
       return validation(result);
     }
-    return ResponseEntity.status(HttpStatus.CREATED).body(service.save(user));
+    return ResponseEntity.status(HttpStatus.CREATED).body(userService.save(user));
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<?> update(
+  public ResponseEntity<Object> update(
       @Valid @RequestBody UserRequest user, BindingResult result, @PathVariable Long id) {
     if (result.hasErrors()) {
       return validation(result);
     }
-    Optional<User> updateUser = service.update(user, id);
+    Optional<UserDto> updateUser = userService.update(user, id);
     if (updateUser.isPresent()) {
       return ResponseEntity.status(HttpStatus.CREATED).body(updateUser);
     }
@@ -59,15 +63,15 @@ public class UserController {
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<?> remove(@PathVariable Long id) {
-    if (service.findById(id).isPresent()) {
-      service.remove(id);
+  public ResponseEntity<Object> remove(@PathVariable Long id) {
+    if (userService.findById(id).isPresent()) {
+      userService.remove(id);
       return ResponseEntity.noContent().build();
     }
     return ResponseEntity.notFound().build();
   }
 
-  private ResponseEntity<?> validation(BindingResult result) {
+  private ResponseEntity<Object> validation(BindingResult result) {
     Map<String, String> errors = new HashMap<>();
     result
         .getFieldErrors()
