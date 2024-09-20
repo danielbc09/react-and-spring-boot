@@ -5,7 +5,8 @@ import { UserContext } from '../context/UserContext';
 export const UserForm = ({ userSelected, handleCloseForm }) => {
   const { initialUserForm, handlerAddUser, errors } = useContext(UserContext);
   const [userForm, setUserForm] = useState(initialUserForm);
-  const { id, username, password, email } = userForm;
+  const { id, username, password, email, admin } = userForm;
+  const [checked, setChecked] = useState(userForm.admin);
 
   const onInputChange = ({ target }) => {
     const { name, value } = target;
@@ -17,24 +18,15 @@ export const UserForm = ({ userSelected, handleCloseForm }) => {
 
   const onsubmit = (event) => {
     event.preventDefault();
-    /*
-    if (!username || (!password && id === 0) || !email) {
-      Swal.fire({
-        title: 'Error de validación ',
-        text: 'Debe completar los campos del formulario!',
-        icon: 'error',
-      });
-      return;
-    }
-    if (!email.includes('@')) {
-      Swal.fire({
-        title: 'Error de validación email',
-        text: 'El email debe ser valido, incluir una arroba!',
-        icon: 'error',
-      });
-      return;
-    }*/
     handlerAddUser(userForm);
+  };
+
+  const onCheckboxChange = () => {
+    setChecked(!checked);
+    setUserForm({
+      ...userForm,
+      admin: checked,
+    });
   };
 
   useEffect(() => {
@@ -78,7 +70,16 @@ export const UserForm = ({ userSelected, handleCloseForm }) => {
         onChange={onInputChange}
       />
       <p className="text-danger">{errors?.email}</p>
-
+      <div className="my-3 form-check">
+        <input
+          type="checkbox"
+          name="admin"
+          checked={admin}
+          className="form-check-input"
+          onChange={onCheckboxChange}
+        />
+        <label className="form-check-label">Admin </label>
+      </div>
       <input type="hidden" name="id" value={id} />
       <button className="btn btn-primary" type="submit">
         {id > 0 ? 'Editar' : 'Crear'}

@@ -1,8 +1,9 @@
-import { useReducer, useState } from 'react';
+import { useReducer, useState, useContext } from 'react';
 import { usersReducer } from '../reducers/usersReducer';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { findAll, save, update, remove } from '../services/userService';
+import { AuthContext } from '../auth/context/AuthContext';
 
 const initialUsers = [];
 
@@ -11,6 +12,7 @@ const initialUserForm = {
   username: '',
   password: '',
   email: '',
+  admin: false,
 };
 
 const initialsErrors = {
@@ -24,19 +26,27 @@ export const useUsers = () => {
   const [userSelected, setUserSelected] = useState(initialUserForm);
   const [visibleForm, setVisibleForm] = useState(false);
   const [errors, setErrors] = useState(initialsErrors);
+  const { login, handlerLogOut } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const getUsers = async () => {
-    const result = await findAll();
-    console.log(result);
-    dispatch({
-      type: 'loadingUsers',
-      payload: result.data,
-    });
+    try {
+      const result = await findAll();
+      console.log(result);
+      dispatch({
+        type: 'loadingUsers',
+        payload: result.data,
+      });
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        handlerLogOut();
+      }
+    }
   };
 
   const handlerAddUser = async (user) => {
+    if (!login.isAdmin) return;
     try {
       let response;
       if (user.id === 0) {
@@ -71,6 +81,8 @@ export const useUsers = () => {
         if (error.response.data?.message?.includes('UK_email')) {
           setErrors({ email: 'El email ya existe!' });
         }
+      } else if (error.response && error.response.status === 401) {
+        handlerLogOut();
       } else {
         throw error;
       }
@@ -78,6 +90,8 @@ export const useUsers = () => {
   };
 
   const handleRemoveUser = (id) => {
+    if (!login.isAdmin) return;
+
     Swal.fire({
       title: 'Esta seguro que desea eliminar?',
       text: 'Cuidado el usuario será eliminado!',
@@ -86,18 +100,24 @@ export const useUsers = () => {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Si, eliminar!',
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        remove(id);
-        dispatch({
-          type: 'removeUser',
-          payload: id,
-        });
-        Swal.fire({
-          title: 'Usuario Eliminado!',
-          text: 'Usuario eliminado con exito.',
-          icon: 'success',
-        });
+        try {
+          await remove(id);
+          dispatch({
+            type: 'removeUser',
+            payload: id,
+          });
+          Swal.fire({
+            title: 'Usuario Eliminado!',
+            text: 'Usuario eliminado con exito.',
+            icon: 'success',
+          });
+        } catch (error) {
+          if (error.response && error.response.status === 401) {
+            handlerLogOut();
+          }
+        }
       }
     });
   };
