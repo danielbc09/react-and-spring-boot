@@ -8,9 +8,7 @@ import lombok.Getter;
 @Getter
 public class Role {
 
-  public Role() {
-    this.name = name;
-  }
+  public Role() {}
 
   public Role(Long id, String name) {
     this.name = name;

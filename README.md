@@ -60,10 +60,20 @@ https://www.udemy.com/course/react-spring-creando-webapp-full-stack/
 
     - Configurar Backend para seguridad.
     - Usar Spring Security. 
-    - Implement filters in Backend 
-    - Implement JWT Token with 
+    - Implementados filters del Backend para login y valdidación.
+    - Implementadios JWT Token con la libreria.
         - https://github.com/jwtk/jjwt
+    - Creacion de roles BD.
+    - Configuración de roles en Backend.
+    - Configuracion de permisos de rutas.
+    - Uso patron DTO y Mapper Builder.    
 
+# Seccion 17 : React integrando login JWT con Backend Spring.
+    - Configurando Cors Backend
+    - Implementar login con axios
+    - Configurar token en el header.
+    - Ocultar botones dependiendo del rol del administrador.
+    - Añadiendo interceptor. 
 ## Recursos
 
 https://sweetalert2.github.io/#usage

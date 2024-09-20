@@ -31,6 +31,8 @@ public class User {
   @Column(unique = true)
   private String email;
 
+  @Transient private boolean admin;
+
   @ManyToMany
   @JoinTable(
       name = "users_roles",

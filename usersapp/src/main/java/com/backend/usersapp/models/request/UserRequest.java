@@ -15,4 +15,5 @@ public class UserRequest {
   private String username;
 
   @NotEmpty @Email private String email;
+  private boolean admin;
 }
